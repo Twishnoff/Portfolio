@@ -17,6 +17,7 @@
   :root{
     --ink:        #20242B;
     --ink-soft:   #3C4149;
+    --desk:       #E8DFC6;   /* page background — warm parchment, pairs with card paper */
     --paper:      #F6F1E6;
     --paper-dim:  #EDE6D3;
     --paper-line: #CFC6AC;
@@ -42,11 +43,11 @@
 
   body{
     margin: 0;
-    background: var(--ink);
+    background: var(--desk);
     background-image:
-      radial-gradient(ellipse 900px 500px at 15% -10%, rgba(255,255,255,0.05), transparent 60%),
-      radial-gradient(ellipse 700px 500px at 100% 10%, rgba(255,255,255,0.035), transparent 55%);
-    color: var(--paper);
+      radial-gradient(ellipse 900px 500px at 15% -10%, rgba(32,36,43,0.035), transparent 60%),
+      radial-gradient(ellipse 700px 500px at 100% 10%, rgba(32,36,43,0.03), transparent 55%);
+    color: var(--ink);
     font-family: var(--font-body);
     -webkit-font-smoothing: antialiased;
   }
@@ -64,7 +65,8 @@
      ============================================================ */
   header.masthead{
     padding: 88px 0 64px;
-    border-bottom: 1px solid rgba(246,241,230,0.14);
+    border-bottom: 1px solid rgba(32,36,43,0.14);
+    text-align: center;
   }
 
   .eyebrow{
@@ -72,9 +74,10 @@
     font-size: 12px;
     letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: var(--muted-on-ink);
+    color: var(--muted);
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 10px;
     margin: 0 0 22px;
   }
@@ -82,7 +85,7 @@
     content: "";
     width: 26px;
     height: 1px;
-    background: var(--muted-on-ink);
+    background: var(--muted);
     display: inline-block;
   }
 
@@ -93,30 +96,17 @@
     line-height: 1.02;
     margin: 0 0 18px;
     letter-spacing: -0.01em;
+    color: var(--ink);
   }
 
   .position{
     font-size: 17px;
     line-height: 1.6;
     max-width: 560px;
-    color: var(--muted-on-ink);
-    margin: 0;
+    color: var(--muted);
+    margin: 0 auto;
   }
-  .position strong{ color: var(--paper); font-weight: 500; }
-
-  .masthead-meta{
-    margin-top: 40px;
-    display: flex;
-    gap: 28px;
-    flex-wrap: wrap;
-    font-family: var(--font-mono);
-    font-size: 12px;
-    color: var(--muted-on-ink);
-  }
-  .masthead-meta span b{
-    color: var(--paper);
-    font-weight: 500;
-  }
+  .position strong{ color: var(--ink); font-weight: 500; }
 
   /* ============================================================
      GRID
@@ -128,7 +118,7 @@
     font-size: 12px;
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: var(--muted-on-ink);
+    color: var(--muted);
     margin: 0 0 28px;
   }
 
@@ -286,7 +276,7 @@
   }
   .impact-box{
     border-radius: var(--radius);
-    padding: 12px 13px 13px;
+    padding: 8px 13px 8px;
   }
   .impact-box .label{
     font-family: var(--font-mono);
@@ -294,7 +284,7 @@
     letter-spacing: 0.08em;
     text-transform: uppercase;
     display: block;
-    margin-bottom: 5px;
+    margin-bottom: 3px;
     opacity: 0.85;
   }
   .impact-box .value{
@@ -337,22 +327,22 @@
      FOOTER
      ============================================================ */
   footer{
-    border-top: 1px solid rgba(246,241,230,0.14);
+    border-top: 1px solid rgba(32,36,43,0.14);
     padding: 32px 0 48px;
     font-family: var(--font-mono);
     font-size: 12px;
-    color: var(--muted-on-ink);
+    color: var(--muted);
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
     gap: 12px;
   }
   footer a{
-    color: var(--paper);
+    color: var(--ink);
     text-decoration: none;
-    border-bottom: 1px solid rgba(246,241,230,0.35);
+    border-bottom: 1px solid rgba(32,36,43,0.35);
   }
-  footer a:hover{ border-color: var(--paper); }
+  footer a:hover{ border-color: var(--ink); }
 
 </style>
 </head>
@@ -367,10 +357,6 @@
         go-to-market strategy, applied AI marketing systems, and structured
         competitive research — filed below by type.
       </p>
-      <div class="masthead-meta">
-        <span><b>06</b> items indexed</span>
-        <span><b>3</b> formats — video / article / report</span>
-      </div>
     </div>
   </header>
 
