@@ -65,9 +65,22 @@
      ============================================================ */
   header.masthead{
     padding: 88px 0 64px;
-    border-bottom: 1px solid rgba(32,36,43,0.14);
+    border-bottom: 1px solid rgba(246,241,230,0.2);
     text-align: center;
-    background: #DED1AF;
+    color: var(--paper);
+    background-color: #16224a;
+    background-image:
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='480' height='480'%3E%3Cfilter id='m'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.01 0.09' numOctaves='5' seed='11' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.9 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23m)'/%3E%3C/svg%3E"),
+      radial-gradient(ellipse 120% 90% at 8% 10%, rgba(255,255,255,0.22) 0%, transparent 42%),
+      radial-gradient(ellipse 90% 90% at 85% 6%, #5f8fe6 0%, transparent 48%),
+      radial-gradient(ellipse 26% 60% at 56% 46%, rgba(8,12,32,0.85) 0%, transparent 62%),
+      radial-gradient(ellipse 120% 130% at 62% 100%, #0c1740 0%, transparent 55%),
+      radial-gradient(ellipse 85% 90% at 18% 90%, #7fb3ec 0%, transparent 44%),
+      radial-gradient(ellipse 55% 55% at 78% 55%, #d8e8fb 0%, transparent 40%),
+      linear-gradient(150deg, #1c2c66 0%, #3a63c4 48%, #10193e 100%);
+    background-repeat: repeat, no-repeat, no-repeat, no-repeat, no-repeat, no-repeat, no-repeat, no-repeat;
+    background-size: 480px 480px, cover, cover, cover, cover, cover, cover, cover;
+    background-blend-mode: overlay, normal, normal, normal, normal, normal, normal, normal;
   }
 
   .eyebrow{
@@ -75,7 +88,7 @@
     font-size: 12px;
     letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: var(--muted);
+    color: rgba(246,241,230,0.75);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -86,7 +99,7 @@
     content: "";
     width: 26px;
     height: 1px;
-    background: var(--muted);
+    background: rgba(246,241,230,0.55);
     display: inline-block;
   }
 
@@ -97,44 +110,103 @@
     line-height: 1.02;
     margin: 0 0 18px;
     letter-spacing: -0.01em;
-    color: var(--ink);
+    color: var(--paper);
   }
 
   .position{
     font-size: 17px;
     line-height: 1.6;
     max-width: 560px;
-    color: var(--muted);
+    color: rgba(246,241,230,0.8);
     margin: 0 auto;
   }
-  .position strong{ color: var(--ink); font-weight: 500; }
+  .position strong{ color: var(--paper); font-weight: 600; }
 
   .social-links{
     display: flex;
     justify-content: center;
-    gap: 14px;
-    margin-top: 28px;
+    gap: 16px;
+    margin-top: 30px;
   }
   .social-links a{
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 38px;
-    height: 38px;
+    width: 48px;
+    height: 48px;
     border-radius: 50%;
-    border: 1px solid rgba(32,36,43,0.2);
-    color: var(--ink);
-    transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
+    border: 2px solid rgba(246,241,230,0.75);
+    background: rgba(16,25,62,0.35);
+    color: var(--paper);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+    transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease, transform 0.2s ease;
   }
-  .social-links a svg{ width: 18px; height: 18px; }
+  .social-links a svg{ width: 22px; height: 22px; stroke-width: 2.2; }
   .social-links a:hover{
-    border-color: var(--accent-a);
-    color: var(--accent-a);
-    background: var(--accent-a-tint);
+    border-color: #d8e8fb;
+    color: #10193e;
+    background: #d8e8fb;
+    transform: translateY(-2px);
   }
   .social-links a:focus-visible{
-    outline: 2px solid var(--accent-a);
+    outline: 2px solid #d8e8fb;
     outline-offset: 2px;
+  }
+
+  /* ============================================================
+     LOGO STRIP — auto-scrolling marquee, placeholder marks
+     ============================================================ */
+  .logo-strip{
+    background: var(--desk);
+    border-bottom: 1px solid rgba(32,36,43,0.12);
+    padding: 30px 0 26px;
+  }
+  .logo-strip-label{
+    text-align: center;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin: 0 0 18px;
+  }
+  .logo-track-wrap{
+    overflow: hidden;
+    /* fade the edges so logos scroll in/out softly rather than clipping hard */
+    -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 8%, #000 92%, transparent 100%);
+    mask-image: linear-gradient(90deg, transparent 0, #000 8%, #000 92%, transparent 100%);
+  }
+  .logo-track{
+    display: flex;
+    align-items: center;
+    width: max-content;
+    gap: 56px;
+    animation: scroll-logos 26s linear infinite;
+  }
+  @keyframes scroll-logos{
+    from{ transform: translateX(0); }
+    to{ transform: translateX(-50%); }
+  }
+  .logo-item{
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    flex: none;
+    font-family: var(--font-mono);
+    font-size: 12.5px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--muted);
+    opacity: 0.65;
+  }
+  .logo-item svg{
+    width: 24px;
+    height: 24px;
+    flex: none;
+  }
+  @media (prefers-reduced-motion: reduce){
+    .logo-track{ animation: none; }
   }
 
   /* ============================================================
@@ -406,6 +478,28 @@
       </div>
     </div>
   </header>
+
+  <section class="logo-strip" aria-label="Featured company logos">
+    <p class="logo-strip-label">Where I've Delivered Marketing Success</p>
+    <div class="logo-track-wrap">
+      <div class="logo-track">
+      <!-- Placeholder marks — swap each .logo-item's SVG/text for a real client/company logo -->
+      <span class="logo-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2l8 4.5v9L12 20l-8-4.5v-9z"/></svg>Company One</span>
+      <span class="logo-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M8 12h8M12 8v8"/></svg>Company Two</span>
+      <span class="logo-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="3"/></svg>Company Three</span>
+      <span class="logo-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 18l6-12 4 8 3-5 3 9"/></svg>Company Four</span>
+      <span class="logo-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3v18M3 12h18"/></svg>Company Five</span>
+      <span class="logo-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 8a7 4 0 0 0 14 0 7 4 0 0 0-14 0zM5 8v8a7 4 0 0 0 14 0V8"/></svg>Company Six</span>
+      <!-- duplicate set for a seamless loop -->
+      <span class="logo-item" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2l8 4.5v9L12 20l-8-4.5v-9z"/></svg>Company One</span>
+      <span class="logo-item" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M8 12h8M12 8v8"/></svg>Company Two</span>
+      <span class="logo-item" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="3"/></svg>Company Three</span>
+      <span class="logo-item" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 18l6-12 4 8 3-5 3 9"/></svg>Company Four</span>
+      <span class="logo-item" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3v18M3 12h18"/></svg>Company Five</span>
+      <span class="logo-item" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 8a7 4 0 0 0 14 0 7 4 0 0 0-14 0zM5 8v8a7 4 0 0 0 14 0V8"/></svg>Company Six</span>
+      </div>
+    </div>
+  </section>
 
   <main>
     <div class="wrap">
