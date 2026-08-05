@@ -371,6 +371,110 @@
     stroke: var(--paper-line);
   }
 
+  /* ---- upgraded thumbnail mockups (video / blog-article) ---- */
+  .card-thumb.thumb-video,
+  .card-thumb.thumb-blog{
+    border-style: solid;
+    background: linear-gradient(135deg, var(--paper-dim) 0%, var(--paper-line) 100%);
+  }
+  .thumb-chrome{
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 0 10px;
+    z-index: 2;
+  }
+  .card-thumb.thumb-video .thumb-chrome{
+    background: rgba(20,17,14,0.55);
+  }
+  .card-thumb.thumb-blog .thumb-chrome{
+    height: 22px;
+    background: var(--paper-dim);
+    border-bottom: 1px solid var(--paper-line);
+  }
+  .thumb-chrome i{
+    width: 6px; height: 6px; border-radius: 50%;
+    flex: none;
+  }
+  .card-thumb.thumb-video .thumb-chrome i{ background: rgba(255,255,255,0.5); }
+  .card-thumb.thumb-blog .thumb-chrome i{ background: rgba(32,36,43,0.18); }
+  .thumb-url{
+    flex: 1;
+    height: 12px;
+    margin-left: 6px;
+    border-radius: 6px;
+    background: rgba(32,36,43,0.08);
+  }
+  .thumb-shot{
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-align: center;
+    line-height: 1.6;
+    padding: 14px;
+  }
+  .card-thumb.thumb-video .thumb-shot{ padding-top: 20px; }
+  .card-thumb.thumb-blog .thumb-shot{ padding-top: 22px; }
+  .thumb-vignette{
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at center, rgba(0,0,0,0) 45%, rgba(0,0,0,0.28) 100%);
+    z-index: 1;
+  }
+  .thumb-play{
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.92);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.25);
+  }
+  .thumb-play::before{
+    content: "";
+    border-style: solid;
+    border-width: 8px 0 8px 13px;
+    border-color: transparent transparent transparent #B23A3A;
+    margin-left: 3px;
+  }
+  .thumb-logo{
+    position: absolute;
+    left: 10px;
+    bottom: 10px;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--paper);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.18);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 3;
+    border: 1px solid rgba(0,0,0,0.06);
+  }
+  .thumb-logo span{
+    font-family: var(--font-mono);
+    font-size: 8px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--muted);
+  }
+
   /* impact boxes */
   .impact-row{
     display: grid;
@@ -512,23 +616,24 @@
 
       <div class="grid">
 
-        <!-- ============ ITEM 001 — PDF ============ -->
+        <!-- ============ ITEM 001 — VIDEO ============ -->
         <article class="card">
           <div class="card-top">
-            <span class="stamp stamp-pdf">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>
-              PDF
+            <span class="stamp stamp-video">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 4l14 8-14 8V4z"/></svg>
+              Video
             </span>
           </div>
           <h3 class="card-title">
             <a href="#" target="_blank" rel="noopener">The AEO/GEO Playbook<span class="arrow">↗</span></a>
           </h3>
-          <div class="card-thumb">
-            <!-- Replace with: <img src="thumbnail-001.jpg" alt="Screenshot of the AEO/GEO Playbook cover page"> -->
-            <div class="placeholder">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>
-              PDF screenshot
-            </div>
+          <div class="card-thumb thumb-video">
+            <!-- Replace with: <img src="thumbnail-001.jpg" alt="Video thumbnail for The AEO/GEO Playbook"> -->
+            <div class="thumb-chrome"><i></i><i></i><i></i></div>
+            <div class="thumb-shot">Video frame screenshot<br>16:10, mid-scene</div>
+            <div class="thumb-vignette"></div>
+            <div class="thumb-play"></div>
+            <div class="thumb-logo"><span>logo</span></div>
           </div>
           <div class="impact-row">
             <div class="impact-box a">
@@ -546,23 +651,22 @@
           </div>
         </article>
 
-        <!-- ============ ITEM 002 — PDF ============ -->
+        <!-- ============ ITEM 002 — ARTICLE ============ -->
         <article class="card">
           <div class="card-top">
-            <span class="stamp stamp-pdf">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>
-              PDF
+            <span class="stamp stamp-article">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="18" x2="14" y2="18"/></svg>
+              Article
             </span>
           </div>
           <h3 class="card-title">
             <a href="#" target="_blank" rel="noopener">Becoming an AI-Native Marketer<span class="arrow">↗</span></a>
           </h3>
-          <div class="card-thumb">
-            <!-- Replace with: <img src="thumbnail-002.jpg" alt="Screenshot of the AI-Native Marketer curriculum cover page"> -->
-            <div class="placeholder">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>
-              PDF screenshot
-            </div>
+          <div class="card-thumb thumb-blog">
+            <!-- Replace with: <img src="thumbnail-002.jpg" alt="Screenshot of the AI-Native Marketer curriculum page"> -->
+            <div class="thumb-chrome"><i></i><i></i><i></i><span class="thumb-url"></span></div>
+            <div class="thumb-shot">Page screenshot<br>hero image or headline</div>
+            <div class="thumb-logo"><span>logo</span></div>
           </div>
           <div class="impact-row">
             <div class="impact-box a">
@@ -580,23 +684,22 @@
           </div>
         </article>
 
-        <!-- ============ ITEM 003 — REPORT (PDF) ============ -->
+        <!-- ============ ITEM 003 — SALES ENABLEMENT ============ -->
         <article class="card">
           <div class="card-top">
             <span class="stamp stamp-report">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>
-              Report
+              Sales Enablement
             </span>
           </div>
           <h3 class="card-title">
             <a href="#" target="_blank" rel="noopener">Competitive Landscape: Clean Energy Software<span class="arrow">↗</span></a>
           </h3>
-          <div class="card-thumb">
+          <div class="card-thumb thumb-blog">
             <!-- Replace with: <img src="thumbnail-003.jpg" alt="Screenshot of the competitive landscape report"> -->
-            <div class="placeholder">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>
-              PDF screenshot
-            </div>
+            <div class="thumb-chrome"><i></i><i></i><i></i><span class="thumb-url"></span></div>
+            <div class="thumb-shot">Page screenshot<br>hero image or headline</div>
+            <div class="thumb-logo"><span>logo</span></div>
           </div>
           <div class="impact-row">
             <div class="impact-box a">
@@ -625,12 +728,13 @@
           <h3 class="card-title">
             <a href="#" target="_blank" rel="noopener">SEO Teardown, Live<span class="arrow">↗</span></a>
           </h3>
-          <div class="card-thumb">
+          <div class="card-thumb thumb-video">
             <!-- Replace with: <img src="thumbnail-004.jpg" alt="Video thumbnail for the SEO teardown"> -->
-            <div class="placeholder">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 4l14 8-14 8V4z"/></svg>
-              Video thumbnail
-            </div>
+            <div class="thumb-chrome"><i></i><i></i><i></i></div>
+            <div class="thumb-shot">Video frame screenshot<br>16:10, mid-scene</div>
+            <div class="thumb-vignette"></div>
+            <div class="thumb-play"></div>
+            <div class="thumb-logo"><span>logo</span></div>
           </div>
           <div class="impact-row">
             <div class="impact-box a">
@@ -659,12 +763,11 @@
           <h3 class="card-title">
             <a href="#" target="_blank" rel="noopener">Why Every Early-Stage Startup Needs a Founding Marketer<span class="arrow">↗</span></a>
           </h3>
-          <div class="card-thumb">
+          <div class="card-thumb thumb-blog">
             <!-- Replace with: <img src="thumbnail-005.jpg" alt="Screenshot of the blog post page"> -->
-            <div class="placeholder">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="18" x2="14" y2="18"/></svg>
-              Page screenshot
-            </div>
+            <div class="thumb-chrome"><i></i><i></i><i></i><span class="thumb-url"></span></div>
+            <div class="thumb-shot">Page screenshot<br>hero image or headline</div>
+            <div class="thumb-logo"><span>logo</span></div>
           </div>
           <div class="impact-row">
             <div class="impact-box a">
@@ -693,12 +796,11 @@
           <h3 class="card-title">
             <a href="#" target="_blank" rel="noopener">What Changes When Search Engines Read Instead of Rank<span class="arrow">↗</span></a>
           </h3>
-          <div class="card-thumb">
+          <div class="card-thumb thumb-blog">
             <!-- Replace with: <img src="thumbnail-006.jpg" alt="Screenshot of the blog post page"> -->
-            <div class="placeholder">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="18" x2="14" y2="18"/></svg>
-              Page screenshot
-            </div>
+            <div class="thumb-chrome"><i></i><i></i><i></i><span class="thumb-url"></span></div>
+            <div class="thumb-shot">Page screenshot<br>hero image or headline</div>
+            <div class="thumb-logo"><span>logo</span></div>
           </div>
           <div class="impact-row">
             <div class="impact-box a">
@@ -713,6 +815,41 @@
           <div class="description">
             <span class="label">Description</span>
             <p>A field guide to the shift from ranking-based search to answer-based search, and what it means for how content should be structured, cited, and maintained.</p>
+          </div>
+        </article>
+
+        <!-- ============ ITEM 007 — VIDEO ============ -->
+        <article class="card">
+          <div class="card-top">
+            <span class="stamp stamp-video">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 4l14 8-14 8V4z"/></svg>
+              Video
+            </span>
+          </div>
+          <h3 class="card-title">
+            <a href="#" target="_blank" rel="noopener">Building an AI-Augmented GTM Motion<span class="arrow">↗</span></a>
+          </h3>
+          <div class="card-thumb thumb-video">
+            <!-- Replace with: <img src="thumbnail-007.jpg" alt="Video thumbnail for the AI-augmented GTM walkthrough"> -->
+            <div class="thumb-chrome"><i></i><i></i><i></i></div>
+            <div class="thumb-shot">Video frame screenshot<br>16:10, mid-scene</div>
+            <div class="thumb-vignette"></div>
+            <div class="thumb-play"></div>
+            <div class="thumb-logo"><span>logo</span></div>
+          </div>
+          <div class="impact-row">
+            <div class="impact-box a">
+              <span class="label">Impact Metric</span>
+              <p class="value">Add a stat — e.g. views or completion rate</p>
+            </div>
+            <div class="impact-box b">
+              <span class="label">Strategic Impact</span>
+              <p class="value">Add the outcome — e.g. used in onboarding or sales calls</p>
+            </div>
+          </div>
+          <div class="description">
+            <span class="label">Description</span>
+            <p>A walkthrough of how AI tools get stitched into a founding marketer's day-to-day GTM workflow — from research to content to reporting.</p>
           </div>
         </article>
 
