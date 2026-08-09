@@ -29,6 +29,9 @@
     --accent-b:      #A9791F;   /* goldenrod — impact box 2 */
     --accent-b-tint: #F3E9CB;
 
+    --nav-cta:       #C4442C;   /* vermilion — CTA button */
+    --nav-cta-hover: #A8371F;
+
     --radius: 3px;
     --max-width: 1180px;
 
@@ -58,6 +61,76 @@
     max-width: var(--max-width);
     margin: 0 auto;
     padding: 0 32px;
+  }
+
+  /* ============================================================
+     NAVBAR — pinned to top, parchment ground
+     ============================================================ */
+  .navbar{
+    position: sticky;
+    top: 0;
+    z-index: 200;
+    background: var(--desk);
+    border-bottom: 1px solid var(--paper-line);
+    box-shadow: 0 1px 12px rgba(32,36,43,0.07);
+  }
+  .navbar .wrap{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    min-height: 60px;
+  }
+  .nav-links{
+    display: flex;
+    align-items: center;
+    gap: 26px;
+  }
+  .nav-link{
+    font-family: var(--font-mono);
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink);
+    text-decoration: none;
+    padding: 6px 2px;
+    border-bottom: 1.5px solid transparent;
+    transition: border-color 0.15s ease, color 0.15s ease;
+  }
+  .nav-link:hover,
+  .nav-link:focus-visible{
+    color: var(--nav-cta);
+    border-bottom-color: var(--nav-cta);
+  }
+  .nav-cta{
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #FBF8F1;
+    background: var(--nav-cta);
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 0 rgba(32,36,43,0.22);
+    transition: background 0.15s ease, transform 0.1s ease, box-shadow 0.15s ease;
+    white-space: nowrap;
+  }
+  .nav-cta:hover,
+  .nav-cta:focus-visible{
+    background: var(--nav-cta-hover);
+    transform: translateY(-1px);
+    box-shadow: 0 3px 0 rgba(32,36,43,0.26);
+  }
+  .nav-cta:active{
+    transform: translateY(1px);
+    box-shadow: 0 1px 0 rgba(32,36,43,0.22);
+  }
+  @media (max-width: 620px){
+    .navbar .wrap{ min-height: 54px; }
+    .nav-cta{ padding: 8px 14px; font-size: 0.78rem; }
   }
 
   /* ============================================================
@@ -557,6 +630,15 @@
 </style>
 </head>
 <body>
+
+  <nav class="navbar" aria-label="Primary">
+    <div class="wrap">
+      <div class="nav-links">
+        <a class="nav-link" href="https://twishnoff.github.io/Portfolio/">Portfolio</a>
+      </div>
+      <a class="nav-cta" href="https://drive.google.com/file/d/1jVzHdCGTt8bhKrqLBegQgzsAatVxnls9/view?usp=sharing" target="_blank" rel="noopener">View My CV</a>
+    </div>
+  </nav>
 
   <header class="masthead">
     <div class="wrap">
