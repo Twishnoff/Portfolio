@@ -277,7 +277,7 @@
   /* ============================================================
      GRID
      ============================================================ */
-  main{ padding: 56px 0 32px; }
+  main{ padding: 56px 0 24px; }
 
   .section-label{
     font-family: var(--font-mono);
@@ -292,23 +292,27 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     /* Explicit row tracks so cards can subgrid into them — each card
-       spans 6 tracks (top / title / source / thumb / impact / description).
-       60 gives headroom for up to 10 rows of cards; unused tracks collapse
-       to 0 height, so it's safe to leave larger than currently needed. */
-    grid-template-rows: repeat(60, auto);
+       spans 5 tracks (top / thumb / impact / description... aligned per row).
+       Row count = ceil(number of cards / columns at that breakpoint) × 5.
+       NOTE: unused tracks do NOT collapse the gap between them — row-gap
+       still applies between every defined track whether or not it has
+       content — so this must be set per breakpoint below (columns differ
+       by breakpoint) and updated whenever a card is added/removed.
+    */
+    grid-template-rows: repeat(15, auto); /* 3-col default: ceil(8 cards / 3) = 3 rows × 5 tracks */
     gap: 28px;
   }
 
   @media (max-width: 920px){
-    .grid{ grid-template-columns: repeat(2, 1fr); }
+    .grid{ grid-template-columns: repeat(2, 1fr); grid-template-rows: repeat(20, auto); } /* 2-col: 4 rows × 5 */
   }
   @media (max-width: 620px){
-    .grid{ grid-template-columns: 1fr; }
+    .grid{ grid-template-columns: 1fr; grid-template-rows: repeat(40, auto); } /* 1-col: 8 rows × 5 */
     .wrap{ padding: 0 20px; }
     header.masthead{ padding: 64px 0 44px; }
   }
   @media (min-width: 1240px){
-    .grid{ grid-template-columns: repeat(4, 1fr); }
+    .grid{ grid-template-columns: repeat(4, 1fr); grid-template-rows: repeat(10, auto); } /* 4-col: 2 rows × 5 */
     .wrap{ max-width: min(1680px, 92vw); }
   }
 
@@ -611,7 +615,7 @@
      ============================================================ */
   footer{
     border-top: 1px solid rgba(32,36,43,0.14);
-    padding: 22px 0 40px;
+    padding: 16px 0 40px;
     font-family: var(--font-mono);
     font-size: 12px;
     color: var(--muted);
@@ -626,6 +630,18 @@
     border-bottom: 1px solid rgba(32,36,43,0.35);
   }
   footer a:hover{ border-color: var(--ink); }
+  .footer-mail{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border-bottom: none !important;
+    color: var(--muted);
+    transition: color 0.15s ease;
+  }
+  .footer-mail:hover{ color: var(--ink); }
+  .footer-mail svg{ width: 18px; height: 18px; }
 
 </style>
 </head>
@@ -941,8 +957,13 @@
 
   <footer>
     <div class="wrap" style="display:flex; justify-content:space-between; width:100%; flex-wrap:wrap; gap:12px;">
-      <span>Portfolio index — updated 2026</span>
-      <span><a href="mailto:you@example.com">you@example.com</a></span>
+      <span>Tyler Wishnoff &copy; 2026</span>
+      <a class="footer-mail" href="mailto:tyler.wishnoff@gmail.com" title="tyler.wishnoff@gmail.com" aria-label="Email tyler.wishnoff@gmail.com">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2.5" y="4.5" width="19" height="15" rx="2"></rect>
+          <path d="M3 6.5l9 6.5 9-6.5"></path>
+        </svg>
+      </a>
     </div>
   </footer>
 
