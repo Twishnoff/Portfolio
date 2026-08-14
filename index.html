@@ -128,9 +128,94 @@
     transform: translateY(1px);
     box-shadow: 0 1px 0 rgba(32,36,43,0.22);
   }
+  /* --- Dropdown: "My Experience" ------------------------------ */
+  .nav-dropdown{
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+  .nav-dropdown-trigger{
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    cursor: pointer;
+  }
+  .nav-caret{
+    width: 9px;
+    height: 9px;
+    flex: none;
+    transition: transform 0.18s ease;
+  }
+  .nav-dropdown.open .nav-caret{ transform: rotate(180deg); }
+
+  .nav-menu{
+    position: absolute;
+    top: calc(100% + 12px);
+    left: -8px;
+    z-index: 210;
+    min-width: 216px;
+    margin: 0;
+    padding: 6px;
+    list-style: none;
+    background: var(--paper);
+    border: 1px solid var(--paper-line);
+    border-radius: var(--radius);
+    box-shadow: 0 10px 26px rgba(32,36,43,0.18);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-5px);
+    transition: opacity 0.15s ease, transform 0.15s ease, visibility 0.15s ease;
+  }
+  /* invisible bridge so the menu survives the gap on hover */
+  .nav-menu::before{
+    content: "";
+    position: absolute;
+    top: -14px;
+    left: 0;
+    right: 0;
+    height: 14px;
+  }
+  .nav-menu a{
+    display: block;
+    padding: 10px 14px;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink);
+    text-decoration: none;
+    white-space: nowrap;
+    border-radius: 2px;
+    transition: background 0.12s ease, color 0.12s ease;
+  }
+  .nav-menu a:hover,
+  .nav-menu a:focus-visible{
+    background: var(--paper-dim);
+    color: var(--nav-cta);
+  }
+
+  .nav-dropdown.open > .nav-menu{
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+  }
+  @media (hover: hover) and (pointer: fine){
+    .nav-dropdown:hover > .nav-menu,
+    .nav-dropdown:focus-within > .nav-menu{
+      opacity: 1;
+      visibility: visible;
+      transform: none;
+    }
+  }
+
   @media (max-width: 620px){
     .navbar .wrap{ min-height: 54px; }
     .nav-cta{ padding: 8px 14px; font-size: 0.78rem; }
+    .nav-links{ gap: 18px; }
+    .nav-link{ font-size: 0.86rem; letter-spacing: 0.12em; }
+    .nav-menu{ min-width: 190px; }
+    .nav-menu a{ font-size: 0.75rem; padding: 11px 12px; }
   }
 
   /* ============================================================
@@ -650,7 +735,22 @@
   <nav class="navbar" aria-label="Primary">
     <div class="wrap">
       <div class="nav-links">
-        <a class="nav-link" href="https://twishnoff.github.io/Portfolio/">Portfolio</a>
+        <div class="nav-dropdown">
+          <a class="nav-link nav-dropdown-trigger"
+             href="https://twishnoff.github.io/Portfolio/"
+             aria-haspopup="true"
+             aria-expanded="false">
+            My Experience
+            <svg class="nav-caret" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M2.5 4.5L6 8l3.5-3.5"></path>
+            </svg>
+          </a>
+          <ul class="nav-menu">
+            <li><a href="https://twishnoff.github.io/Portfolio/Product%20Marketing">Product Marketing</a></li>
+            <li><a href="https://twishnoff.github.io/Portfolio/Growth">Growth</a></li>
+            <li><a href="https://twishnoff.github.io/Portfolio/">Portfolio</a></li>
+          </ul>
+        </div>
         <a class="nav-link" href="https://medium.com/@Wishnoff" target="_blank" rel="noopener">Blog</a>
       </div>
       <a class="nav-cta" href="https://drive.google.com/file/d/1jVzHdCGTt8bhKrqLBegQgzsAatVxnls9/view?usp=sharing" target="_blank" rel="noopener">View My CV</a>
@@ -968,6 +1068,40 @@
   </footer>
 
   <script>
+    /* Nav dropdown: hover on desktop, tap to open on touch devices */
+    (function(){
+      var dd = document.querySelector('.nav-dropdown');
+      if(!dd) return;
+      var trigger = dd.querySelector('.nav-dropdown-trigger');
+      var hoverCapable = window.matchMedia('(hover: hover) and (pointer: fine)');
+
+      function openMenu(){
+        dd.classList.add('open');
+        trigger.setAttribute('aria-expanded','true');
+      }
+      function closeMenu(){
+        dd.classList.remove('open');
+        trigger.setAttribute('aria-expanded','false');
+      }
+
+      trigger.addEventListener('click', function(e){
+        if(hoverCapable.matches) return;   /* desktop: let the link navigate */
+        e.preventDefault();                /* touch: first tap opens the menu */
+        if(dd.classList.contains('open')) closeMenu(); else openMenu();
+      });
+
+      document.addEventListener('click', function(e){
+        if(!dd.contains(e.target)) closeMenu();
+      });
+      document.addEventListener('keydown', function(e){
+        if(e.key === 'Escape' || e.key === 'Esc'){
+          closeMenu();
+          if(dd.contains(document.activeElement)) document.activeElement.blur();
+        }
+      });
+      dd.addEventListener('mouseleave', closeMenu);
+    })();
+
     function openTab(url){
       var w = window.open(url, '_blank');
       if (w) { w.opener = null; w.focus(); }
