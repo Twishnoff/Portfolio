@@ -62,6 +62,11 @@
     margin: 0 auto;
     padding: 0 32px;
   }
+  /* match index.html: widen the container on large viewports so the
+     navbar (and all .wrap content) aligns identically page to page */
+  @media (min-width: 1240px){
+    .wrap{ max-width: min(1680px, 92vw); }
+  }
 
   /* ============================================================
      NAVBAR — pinned to top, parchment ground
@@ -210,6 +215,7 @@
   }
 
   @media (max-width: 620px){
+    .wrap{ padding: 0 20px; }
     .navbar .wrap{ min-height: 54px; }
     .nav-cta{ padding: 8px 14px; font-size: 0.78rem; }
     .nav-links{ gap: 18px; }
