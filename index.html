@@ -384,21 +384,23 @@
        content — so this must be set per breakpoint below (columns differ
        by breakpoint) and updated whenever a card is added/removed.
     */
-    grid-template-rows: repeat(20, auto); /* 3-col default: ceil(10 cards / 3) = 4 rows × 5 tracks */
+    grid-template-rows: repeat(20, auto); /* 3-col: ceil(12 cards / 3) = 4 rows × 5 tracks */
     gap: 28px;
   }
 
   @media (max-width: 920px){
-    .grid{ grid-template-columns: repeat(2, 1fr); grid-template-rows: repeat(25, auto); } /* 2-col: 5 rows × 5 */
+    .grid{ grid-template-columns: repeat(2, 1fr); grid-template-rows: repeat(30, auto); } /* 2-col: 6 rows × 5 */
   }
   @media (max-width: 620px){
-    .grid{ grid-template-columns: 1fr; grid-template-rows: repeat(50, auto); } /* 1-col: 10 rows × 5 */
+    .grid{ grid-template-columns: 1fr; grid-template-rows: repeat(60, auto); } /* 1-col: 12 rows × 5 */
     .wrap{ padding: 0 20px; }
     header.masthead{ padding: 64px 0 44px; }
   }
   @media (min-width: 1240px){
-    .grid{ grid-template-columns: repeat(4, 1fr); grid-template-rows: repeat(15, auto); } /* 4-col: 3 rows × 5 */
-    .wrap{ max-width: min(1680px, 92vw); }
+    /* stay at 3 columns on wide screens; widen the container so the
+       cards absorb the space the old 4th column used to take. */
+    .grid{ grid-template-columns: repeat(3, 1fr); grid-template-rows: repeat(20, auto); } /* 3-col: 4 rows × 5 */
+    .wrap{ max-width: min(1320px, 92vw); }
   }
 
   /* ============================================================
