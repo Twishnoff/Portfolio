@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Privacy Policy — Tyler Wishnoff</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+
+  /* ============================================================
+     TOKENS
+     Ink desk background, parchment "index cards," two stamp
+     accents (forest / goldenrod) reserved for the impact boxes.
+     ============================================================ */
+  :root{
+    --ink:        #20242B;
+    --ink-soft:   #3C4149;
+    --desk:       #E8DFC6;   /* page background — warm parchment, pairs with card paper */
+    --paper:      #F6F1E6;
+    --paper-dim:  #EDE6D3;
+    --paper-line: #CFC6AC;
+    --muted:      #7A7565;
+    --muted-on-ink: #9BA0A8;
+
+    --accent-a:      #2F6F4E;   /* forest — impact box 1 */
+    --accent-a-tint: #E4EEE7;
+    --accent-b:      #A9791F;   /* goldenrod — impact box 2 */
+    --accent-b-tint: #F3E9CB;
+
+    --nav-cta:       #C4442C;   /* vermilion — CTA button */
+    --nav-cta-hover: #A8371F;
+
+    --radius: 3px;
+    --max-width: 1180px;
+
+    --font-display: 'Newsreader', Georgia, serif;
+    --font-body: 'IBM Plex Sans', system-ui, sans-serif;
+    --font-mono: 'IBM Plex Mono', 'Courier New', monospace;
+  }
+
+  *{ box-sizing: border-box; }
+
+  html{ scroll-behavior: smooth; }
+
+  body{
+    margin: 0;
+    background: var(--desk);
+    background-image:
+      radial-gradient(ellipse 900px 500px at 15% -10%, rgba(32,36,43,0.035), transparent 60%),
+      radial-gradient(ellipse 700px 500px at 100% 10%, rgba(32,36,43,0.03), transparent 55%);
+    color: var(--ink);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a{ color: inherit; }
+
+  .wrap{
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+  @media (min-width: 1240px){
+    .wrap{ max-width: min(1680px, 92vw); }
+  }
+
+  /* ============================================================
+     NAVBAR — pinned to top, parchment ground
+     ============================================================ */
+  .navbar{
+    position: sticky;
+    top: 0;
+    z-index: 200;
+    background: var(--desk);
+    border-bottom: 1px solid var(--paper-line);
+    box-shadow: 0 1px 12px rgba(32,36,43,0.07);
+  }
+  .navbar .wrap{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    min-height: 60px;
+  }
+  .nav-links{
+    display: flex;
+    align-items: center;
+    gap: 26px;
+  }
+  .nav-link{
+    font-family: var(--font-mono);
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink);
+    text-decoration: none;
+    padding: 6px 2px;
+    border-bottom: 1.5px solid transparent;
+    transition: border-color 0.15s ease, color 0.15s ease;
+  }
+  .nav-link:hover,
+  .nav-link:focus-visible{
+    color: var(--nav-cta);
+    border-bottom-color: var(--nav-cta);
+  }
+  .nav-cta{
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #FBF8F1;
+    background: var(--nav-cta);
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 0 rgba(32,36,43,0.22);
+    transition: background 0.15s ease, transform 0.1s ease, box-shadow 0.15s ease;
+    white-space: nowrap;
+  }
+  .nav-cta:hover,
+  .nav-cta:focus-visible{
+    background: var(--nav-cta-hover);
+    transform: translateY(-1px);
+    box-shadow: 0 3px 0 rgba(32,36,43,0.26);
+  }
+  .nav-cta:active{
+    transform: translateY(1px);
+    box-shadow: 0 1px 0 rgba(32,36,43,0.22);
+  }
+  /* --- Dropdown: "My Experience" ------------------------------ */
+  .nav-dropdown{
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+  .nav-dropdown-trigger{
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    cursor: pointer;
+  }
+  .nav-caret{
+    width: 9px;
+    height: 9px;
+    flex: none;
+    transition: transform 0.18s ease;
+  }
+  .nav-dropdown.open .nav-caret{ transform: rotate(180deg); }
+
+  .nav-menu{
+    position: absolute;
+    top: calc(100% + 12px);
+    left: -8px;
+    z-index: 210;
+    min-width: 216px;
+    margin: 0;
+    padding: 6px;
+    list-style: none;
+    background: var(--paper);
+    border: 1px solid var(--paper-line);
+    border-radius: var(--radius);
+    box-shadow: 0 10px 26px rgba(32,36,43,0.18);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-5px);
+    transition: opacity 0.15s ease, transform 0.15s ease, visibility 0.15s ease;
+  }
+  .nav-menu::before{
+    content: "";
+    position: absolute;
+    top: -14px;
+    left: 0;
+    right: 0;
+    height: 14px;
+  }
+  .nav-menu a{
+    display: block;
+    padding: 10px 14px;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink);
+    text-decoration: none;
+    white-space: nowrap;
+    border-radius: 2px;
+    transition: background 0.12s ease, color 0.12s ease;
+  }
+  .nav-menu a:hover,
+  .nav-menu a:focus-visible{
+    background: var(--paper-dim);
+    color: var(--nav-cta);
+  }
+
+  .nav-dropdown.open > .nav-menu{
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+  }
+  @media (hover: hover) and (pointer: fine){
+    .nav-dropdown:hover > .nav-menu,
+    .nav-dropdown:focus-within > .nav-menu{
+      opacity: 1;
+      visibility: visible;
+      transform: none;
+    }
+  }
+
+  @media (max-width: 620px){
+    .wrap{ padding: 0 20px; }
+    .navbar .wrap{ min-height: 54px; }
+    .nav-cta{ padding: 8px 14px; font-size: 0.78rem; }
+    .nav-links{ gap: 18px; }
+    .nav-link{ font-size: 0.86rem; letter-spacing: 0.12em; }
+    .nav-menu{ min-width: 190px; }
+    .nav-menu a{ font-size: 0.75rem; padding: 11px 12px; }
+  }
+
+  /* ============================================================
+     PAGE HEADER — simple parchment header, no photo backdrop
+     ============================================================ */
+  .policy-header{
+    padding: 64px 0 12px;
+  }
+  .policy-header .eyebrow{
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin: 0 0 18px;
+  }
+  .policy-header h1{
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: clamp(34px, 5vw, 52px);
+    line-height: 1.08;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    margin: 0 0 16px;
+  }
+  .policy-header .intro{
+    font-size: 16px;
+    line-height: 1.6;
+    max-width: 620px;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+
+  /* ============================================================
+     POLICY CARD — parchment index card holding the policy copy
+     ============================================================ */
+  .policy-content{
+    padding: 32px 0 96px;
+  }
+  .policy-card{
+    background: var(--paper);
+    border: 1px solid var(--paper-line);
+    border-radius: var(--radius);
+    padding: 40px 44px;
+    max-width: 760px;
+  }
+  .policy-card ul{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .policy-card li{
+    font-size: 15.5px;
+    line-height: 1.65;
+    color: var(--ink-soft);
+    padding: 18px 0;
+    border-top: 1px solid var(--paper-line);
+  }
+  .policy-card li:first-child{ border-top: none; padding-top: 0; }
+  .policy-card li:last-child{ padding-bottom: 0; }
+  .policy-card li strong{
+    color: var(--ink);
+    font-weight: 600;
+  }
+  .policy-card a{
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(32,36,43,0.35);
+  }
+  .policy-card a:hover{ border-color: var(--ink); }
+
+  @media (max-width: 620px){
+    .policy-card{ padding: 28px 24px; }
+  }
+
+  /* ============================================================
+     FOOTER
+     ============================================================ */
+  footer{
+    border-top: 1px solid rgba(32,36,43,0.14);
+    padding: 16px 0 40px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--muted);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  footer a{
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(32,36,43,0.35);
+  }
+  footer a:hover{ border-color: var(--ink); }
+  .footer-mail{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border-bottom: none !important;
+    color: var(--muted);
+    transition: color 0.15s ease;
+  }
+  .footer-mail:hover{ color: var(--ink); }
+  .footer-mail svg{ width: 18px; height: 18px; }
+
+</style>
+</head>
+<body>
+
+  <nav class="navbar" aria-label="Primary">
+    <div class="wrap">
+      <div class="nav-links">
+        <div class="nav-dropdown">
+          <a class="nav-link nav-dropdown-trigger"
+             href="https://twishnoff.github.io/Portfolio/"
+             aria-haspopup="true"
+             aria-expanded="false">
+            My Experience
+            <svg class="nav-caret" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M2.5 4.5L6 8l3.5-3.5"></path>
+            </svg>
+          </a>
+          <ul class="nav-menu">
+            <li><a href="https://twishnoff.github.io/Portfolio/Product%20Marketing">Product Marketing</a></li>
+            <li><a href="https://twishnoff.github.io/Portfolio/Growth">Growth</a></li>
+            <li><a href="https://twishnoff.github.io/Portfolio/">Portfolio</a></li>
+          </ul>
+        </div>
+        <a class="nav-link" href="https://medium.com/@Wishnoff" target="_blank" rel="noopener">Blog</a>
+      </div>
+      <a class="nav-cta" href="https://drive.google.com/file/d/1jVzHdCGTt8bhKrqLBegQgzsAatVxnls9/view?usp=sharing" target="_blank" rel="noopener">View My CV</a>
+    </div>
+  </nav>
+
+  <header class="policy-header">
+    <div class="wrap">
+      <p class="eyebrow">Legal</p>
+      <h1>Privacy Policy</h1>
+      <p class="intro">This portfolio is a static website hosted via GitHub Pages.</p>
+    </div>
+  </header>
+
+  <section class="policy-content">
+    <div class="wrap">
+      <div class="policy-card">
+        <ul>
+          <li><strong>Analytics:</strong> I use Google Analytics 4 to understand aggregate visitor traffic (e.g., counting total page views). This data is anonymized and does not track your personal identity.</li>
+          <li><strong>Hosting:</strong> GitHub may collect basic technical logs from your browser to safely serve this website. You can view the GitHub Privacy Statement on their official website.</li>
+          <li><strong>Opt-Out:</strong> You can block all tracking by using a browser extension like uBlock Origin or Privacy Badger.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap" style="display:flex; justify-content:space-between; width:100%; flex-wrap:wrap; gap:12px;">
+      <span>Tyler Wishnoff &copy; 2026 &middot; <a href="https://twishnoff.github.io/Portfolio/Privacy">Privacy</a></span>
+      <a class="footer-mail" href="mailto:tyler.wishnoff@gmail.com" title="tyler.wishnoff@gmail.com" aria-label="Email tyler.wishnoff@gmail.com">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2.5" y="4.5" width="19" height="15" rx="2"></rect>
+          <path d="M3 6.5l9 6.5 9-6.5"></path>
+        </svg>
+      </a>
+    </div>
+  </footer>
+
+  <script>
+    /* Nav dropdown: hover on desktop, tap to open on touch devices */
+    (function(){
+      var dd = document.querySelector('.nav-dropdown');
+      if(!dd) return;
+      var trigger = dd.querySelector('.nav-dropdown-trigger');
+      var hoverCapable = window.matchMedia('(hover: hover) and (pointer: fine)');
+
+      function openMenu(){
+        dd.classList.add('open');
+        trigger.setAttribute('aria-expanded','true');
+      }
+      function closeMenu(){
+        dd.classList.remove('open');
+        trigger.setAttribute('aria-expanded','false');
+      }
+
+      trigger.addEventListener('click', function(e){
+        if(hoverCapable.matches) return;   /* desktop: let the link navigate */
+        e.preventDefault();                /* touch: first tap opens the menu */
+        if(dd.classList.contains('open')) closeMenu(); else openMenu();
+      });
+
+      document.addEventListener('click', function(e){
+        if(!dd.contains(e.target)) closeMenu();
+      });
+      document.addEventListener('keydown', function(e){
+        if(e.key === 'Escape' || e.key === 'Esc'){
+          closeMenu();
+          if(dd.contains(document.activeElement)) document.activeElement.blur();
+        }
+      });
+      dd.addEventListener('mouseleave', closeMenu);
+    })();
+  </script>
+
+</body>
+</html>
