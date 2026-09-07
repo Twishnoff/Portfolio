@@ -49,6 +49,55 @@
 }
 </script>
 
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What does Tyler Wishnoff do?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Tyler Wishnoff is a 4x founding marketer for early-stage and growing startups. He has deep experience in product marketing, growth, content marketing, and PR, and has delivered over $20M in ARR through enterprise B2B and product-led growth (PLG) environments."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What stage of startup does Tyler work best with?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "While Tyler has worked across every size and stage of company, his experience makes him uniquely well-suited for seed through Series B companies that have limited budgets, lack a proven playbook, or need marketing support that spans a variety of disciplines."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What industries has Tyler worked in?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Tyler has extensive experience helping B2B SaaS, data infrastructure, and developer tools companies like Cisco Systems, NETSCOUT, Kyligence, and StarRocks, among others listed above."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is Tyler available for new roles or consulting work right now?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes! Based in the San Francisco Bay Area, Tyler is available for on-site, hybrid, or remote full-time, fractional, or project-based engagements. You can reach out using the email link in the footer of this page."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How can I get in touch with Tyler?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Email is the fastest way to reach him - see the mail icon in the footer below, but you can also message him on LinkedIn."
+      }
+    }
+  ]
+}
+</script>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -991,6 +1040,62 @@
     padding: 3px 8px;
     border-radius: 2px;
   }
+
+  /* ============================================================
+     FAQ — recruiter/founder-facing Q&A, native <details> accordion
+     (matches .card paper treatment; no JS required)
+     ============================================================ */
+  .faq-section{
+    padding: 8px 0 72px;
+  }
+  .faq-heading{
+    font-family: var(--font-display);
+    font-size: 32px;
+    font-weight: 600;
+    margin: 8px 0 32px;
+    color: var(--ink);
+  }
+  .faq-list{
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    max-width: 760px;
+  }
+  .faq-item{
+    background: var(--paper);
+    border: 1px solid rgba(0,0,0,0.06);
+    border-radius: var(--radius);
+    box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+    padding: 0 22px;
+  }
+  .faq-item summary{
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 18px 0;
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 16px;
+    color: var(--ink);
+  }
+  .faq-item summary::-webkit-details-marker{ display: none; }
+  .faq-item summary .faq-icon{
+    flex: none;
+    width: 18px;
+    height: 18px;
+    color: var(--nav-cta);
+    transition: transform 0.18s ease;
+  }
+  .faq-item[open] summary .faq-icon{ transform: rotate(45deg); }
+  .faq-item .faq-answer{
+    margin: 0 0 20px;
+    color: var(--ink-soft);
+    font-size: 15px;
+    line-height: 1.6;
+  }
 </style>
 </head>
 <body>
@@ -1507,6 +1612,45 @@
       </div>
     </div>
   </main>
+
+  <section class="faq-section" aria-label="Frequently asked questions">
+    <div class="wrap">
+      <p class="section-label">FAQ</p>
+      <h2 class="faq-heading">Frequently Asked Questions</h2>
+      <div class="faq-list">
+      <details class="faq-item">
+        <summary>What does Tyler Wishnoff do?
+          <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+        </summary>
+        <p class="faq-answer">Tyler Wishnoff is a 4x founding marketer for early-stage and growing startups. He has deep experience in product marketing, growth, content marketing, and PR, and has delivered over $20M in ARR through enterprise B2B and product-led growth (PLG) environments.</p>
+      </details>
+      <details class="faq-item">
+        <summary>What stage of startup does Tyler work best with?
+          <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+        </summary>
+        <p class="faq-answer">While Tyler has worked across every size and stage of company, his experience makes him uniquely well-suited for seed through Series B companies that have limited budgets, lack a proven playbook, or need marketing support that spans a variety of disciplines.</p>
+      </details>
+      <details class="faq-item">
+        <summary>What industries has Tyler worked in?
+          <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+        </summary>
+        <p class="faq-answer">Tyler has extensive experience helping B2B SaaS, data infrastructure, and developer tools companies like Cisco Systems, NETSCOUT, Kyligence, and StarRocks, among others listed above.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Is Tyler available for new roles or consulting work right now?
+          <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+        </summary>
+        <p class="faq-answer">Yes! Based in the San Francisco Bay Area, Tyler is available for on-site, hybrid, or remote full-time, fractional, or project-based engagements. You can reach out using the email link in the footer of this page.</p>
+      </details>
+      <details class="faq-item">
+        <summary>How can I get in touch with Tyler?
+          <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+        </summary>
+        <p class="faq-answer">Email is the fastest way to reach him - see the mail icon in the footer below, but you can also message him on <a href="https://www.linkedin.com/in/wishnoff/" target="_blank" rel="noopener">LinkedIn</a>.</p>
+      </details>
+      </div>
+    </div>
+  </section>
 
   <footer>
     <div class="wrap" style="display:flex; justify-content:space-between; width:100%; flex-wrap:wrap; gap:12px;">
