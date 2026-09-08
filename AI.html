@@ -348,6 +348,59 @@
     border-radius: 50%;
     background: #4CD787;
     box-shadow: 0 0 0 3px rgba(76, 215, 135, 0.25);
+    animation: availability-pulse 2.6s ease-in-out infinite;
+  }
+  @keyframes availability-pulse{
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.25; }
+  }
+  @media (prefers-reduced-motion: reduce){
+    .availability-badge .dot{ animation: none; }
+  }
+
+  /* Email icon click-to-reveal popover (hero + footer) */
+  .email-toggle-wrap{
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+  }
+  .email-reveal{
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 10px;
+    padding: 7px 14px;
+    background: var(--ink);
+    color: var(--paper);
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+    border-radius: 6px;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.28);
+    z-index: 30;
+  }
+  .email-reveal::before{
+    content: "";
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 5px solid transparent;
+    border-bottom-color: var(--ink);
+  }
+  .footer-mail-wrap .email-reveal{
+    top: auto;
+    bottom: 100%;
+    margin-top: 0;
+    margin-bottom: 10px;
+  }
+  .footer-mail-wrap .email-reveal::before{
+    top: 100%;
+    bottom: auto;
+    border-bottom-color: transparent;
+    border-top-color: var(--ink);
   }
 
   /* ============================================================
@@ -803,7 +856,7 @@
       </p>
       <div class="availability-badge">
         <span class="dot" aria-hidden="true"></span>
-        Open to Head of Marketing &amp; Founding Marketer roles &middot; SF Bay Area &middot; Remote-friendly
+        Open to head of marketing, founding marketer, and sr. marketer roles &middot; SF Bay Area &middot; Remote-friendly
       </div>
       <div class="social-links">
         <a href="https://www.linkedin.com/in/wishnoff/" target="_blank" rel="noopener" aria-label="LinkedIn profile">
@@ -818,12 +871,15 @@
             <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
           </svg>
         </a>
-        <a href="mailto:tyler.wishnoff@gmail.com" aria-label="Email Tyler" title="tyler.wishnoff@gmail.com">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="2.5" y="4.5" width="19" height="15" rx="2"></rect>
-            <path d="M3 6.5l9 6.5 9-6.5"></path>
-          </svg>
-        </a>
+        <span class="email-toggle-wrap">
+          <a href="mailto:tyler.wishnoff@gmail.com" class="email-toggle" aria-label="Email Tyler" title="tyler.wishnoff@gmail.com" aria-expanded="false" data-email="tyler.wishnoff@gmail.com">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2.5" y="4.5" width="19" height="15" rx="2"></rect>
+              <path d="M3 6.5l9 6.5 9-6.5"></path>
+            </svg>
+          </a>
+          <span class="email-reveal" role="status" hidden>tyler.wishnoff@gmail.com</span>
+        </span>
         <a href="https://twishnoff.github.io/Portfolio/#faq" aria-label="Jump to Frequently Asked Questions" title="FAQ">
           <span class="faq-link-text">FAQ</span>
         </a>
@@ -991,15 +1047,44 @@
   <footer>
     <div class="wrap" style="display:flex; justify-content:space-between; width:100%; flex-wrap:wrap; gap:12px;">
       <span>Tyler Wishnoff &copy; 2026 &middot; <a href="https://twishnoff.github.io/Portfolio/Privacy">Privacy</a></span>
-      <a class="footer-mail" href="mailto:tyler.wishnoff@gmail.com" title="tyler.wishnoff@gmail.com" aria-label="Email tyler.wishnoff@gmail.com">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-          <rect x="2.5" y="4.5" width="19" height="15" rx="2"></rect>
-          <path d="M3 6.5l9 6.5 9-6.5"></path>
-        </svg>
-      </a>
+      <span class="email-toggle-wrap footer-mail-wrap">
+        <a class="footer-mail email-toggle" href="mailto:tyler.wishnoff@gmail.com" title="tyler.wishnoff@gmail.com" aria-label="Email tyler.wishnoff@gmail.com" aria-expanded="false" data-email="tyler.wishnoff@gmail.com">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2.5" y="4.5" width="19" height="15" rx="2"></rect>
+            <path d="M3 6.5l9 6.5 9-6.5"></path>
+          </svg>
+        </a>
+        <span class="email-reveal" role="status" hidden>tyler.wishnoff@gmail.com</span>
+      </span>
     </div>
   </footer>
   <script>
+    /* Email icon click-to-reveal (desktop only; touch devices keep native mailto tap) */
+    (function(){
+      var isDesktop = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+      var toggles = document.querySelectorAll('.email-toggle');
+      function closeAll(){
+        document.querySelectorAll('.email-reveal').forEach(function(r){ r.hidden = true; });
+        toggles.forEach(function(t){ t.setAttribute('aria-expanded', 'false'); });
+      }
+      toggles.forEach(function(link){
+        var wrap = link.closest('.email-toggle-wrap');
+        var reveal = wrap ? wrap.querySelector('.email-reveal') : null;
+        if(!reveal) return;
+        link.addEventListener('click', function(e){
+          if(!isDesktop) return; // let mailto: open normally on touch devices
+          e.preventDefault();
+          var willShow = reveal.hidden;
+          closeAll();
+          reveal.hidden = !willShow;
+          link.setAttribute('aria-expanded', String(willShow));
+        });
+      });
+      document.addEventListener('click', function(e){
+        if(!e.target.closest('.email-toggle-wrap')) closeAll();
+      });
+    })();
+
     /* Nav dropdown: hover on desktop, tap to open on touch devices */
     (function(){
       var dd = document.querySelector('.nav-dropdown');
